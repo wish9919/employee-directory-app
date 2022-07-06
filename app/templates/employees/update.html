@@ -1,0 +1,47 @@
+{% extends 'base.html' %} {% block header %}
+<h1>
+  {% block title %}Edit "{{ employee['first_name'] }} {{ employee["last_name"]
+  }}"{% endblock %}
+</h1>
+{% endblock %} {% block content %}
+<form method="post">
+  <label for="first_name">First Name</label>
+  <input
+    name="first_name"
+    id="first_name"
+    value="{{ request.form['first_name'] or employee['first_name'] }}"
+    required
+  />
+  <label for="last_name">Last Name</label>
+  <input
+    name="last_name"
+    id="last_name"
+    value="{{ request.form['last_name'] or employee['last_name'] }}"
+    required
+  />
+  <label for="designation">Designation</label>
+  <input
+    name="designation"
+    id="designation"
+    value="{{ request.form['designation'] or employee['designation'] }}"
+    required
+  />
+  <label for="note">Note</label>
+  <textarea name="note" id="note">
+{{ request.form['note'] or employee['note'] }}</textarea
+  >
+  <input type="submit" value="Save" />
+</form>
+<hr />
+<form
+  action="{{ url_for('employees.delete', id=employee['id']) }}"
+  method="post"
+>
+  <input
+    class="danger"
+    type="submit"
+    value="Delete"
+    onclick="return confirm('Are you sure?');"
+  />
+</form>
+{% endblock %}

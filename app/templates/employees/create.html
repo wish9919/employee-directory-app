@@ -1,0 +1,25 @@
+{% extends 'base.html' %} {% block header %}
+<h1>{% block title %}New Employee{% endblock %}</h1>
+{% endblock %} {% block content %}
+<form method="post">
+  <label for="first_name">First Name</label>
+  <input
+    name="first_name"
+    id="first_name"
+    value="{{ request.form['first_name'] }}"
+    required
+  />
+
+  <label for="last_name">Last Name</label>
+  <input name="last_name" id="lastname" value="{{ request.form["last_name"] }}"
+  required />
+
+  <label for="designation">Designation</label>
+  <input name="designation" id="designation" value="{{
+  request.form["designation"] }}" />
+
+  <label for="note">Note</label>
+  <textarea name="note" id="note">{{ request.form['note'] }}</textarea>
+  <input type="submit" value="Save" />
+</form>
+{% endblock %}

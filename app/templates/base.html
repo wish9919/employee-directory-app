@@ -2,7 +2,11 @@
 <title>{% block title %}{% endblock %} - Employee Directory App</title>
 <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
 <nav>
-  <h1>Employee Directory App</h1>
+  <div>
+    <a href="/">
+      <h1>Employee Directory App</h1>
+    </a>
+  </div>
   <ul>
     {% if g.user %}
     <li><span>{{ g.user['username'] }}</span></li>

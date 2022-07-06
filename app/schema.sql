@@ -1,6 +1,6 @@
 
 DROP TABLE IF EXISTS users;
-DROP TABLE IF EXISTS posts;
+DROP TABLE IF EXISTS employees;
 
 CREATE TABLE users (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -8,11 +8,11 @@ CREATE TABLE users (
   password TEXT NOT NULL
 );
 
-CREATE TABLE posts (
+CREATE TABLE employees (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
-  author_id INTEGER NOT NULL,
+  first_name TEXT NOT NULL,
+  last_name TEXT NOT NULL,
   created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  title TEXT NOT NULL,
-  body TEXT NOT NULL,
-  FOREIGN KEY (author_id) REFERENCES users (id)
+  designation TEXT NOT NULL,
+  note TEXT
 );

@@ -1,0 +1,28 @@
+{% extends 'base.html' %} {% block header %}
+<h1>{% block title %}Employees{% endblock %}</h1>
+{% if g.user %}
+<a class="action" href="{{ url_for('employees.create') }}">New</a>
+{% endif %} {% endblock %} {% block content %} {% for employee in employees %}
+<article class="employee">
+  <header>
+    <div>
+      <h1>
+        {{ employee['first_name'] }} {{ employee['last_name'] }} - {{
+        employee["designation"] }}
+      </h1>
+      <div class="about">
+        Created at {{ employee['created_at'].strftime('%Y-%m-%d') }}
+      </div>
+    </div>
+
+    <a
+      class="action"
+      href="{{ url_for('employees.update', id=employee['id']) }}"
+      >Edit</a
+    >
+  </header>
+  <p class="body">{{ employee['note'] }}</p>
+</article>
+{% if not loop.last %}
+<hr />
+{% endif %} {% endfor %} {% endblock %}
