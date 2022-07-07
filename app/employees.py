@@ -11,6 +11,7 @@ bp = Blueprint("employees", __name__, url_prefix="/employees")
 
 
 @bp.route("/")
+@login_required
 def index():
     db = get_db()
     employees = db.execute(

@@ -1,17 +1,5 @@
- <!DOCTYPE html>
- <html>
-  <head>
-    {% block head %}
-    <title>{% block title %}{% endblock %} - Employee Directory App</title>
-    <link
-      rel="stylesheet"
-      href="{{ url_for('static', filename='style.css') }}"
-    />
-    {% endblock %}
-  </head>
-  <body>
-
-{% set routes = [ ('/', 'index', 'Dashboard', '<svg
+{% extends 'base.html' %} {% block body %} {% set routes = [ ('/', 'index',
+'Dashboard', '<svg
   class="mr-3 flex-shrink-0 h-6 w-6 text-indigo-300"
   xmlns="http://www.w3.org/2000/svg"
   fill="none"
@@ -55,9 +43,7 @@
     stroke-linejoin="round"
     d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"
   /></svg
->') ] -%} 
-
-{% set active_page = active_page|default('index') -%}
+>') ] -%} {% set active_page = active_page|default('index') -%}
 
 <main class="min-h-screen h-screen w-screen flex flex-row">
   <nav class="flex-initial w-64 h-full flex flex-col min-h-0 bg-indigo-700">
@@ -66,20 +52,23 @@
         <h1 class="text-white uppercase">Employee Directory App</h1>
       </div>
       <nav class="mt-5 flex-1 px-2 space-y-1" aria-label="Sidebar">
-        {% for href, id, title, icon in routes %}
+        {% for href, id, title, icon in routes %} {% if id == active_page %}
         <a
-        href="{{ href|e }}"
-        {% if id == active_page %}
           class="bg-indigo-800 text-white group flex items-center px-2 py-2 text-sm font-medium rounded-md"
-         {%else%} 
-          class="text-indigo-100 hover:bg-indigo-600 hover:bg-opacity-75 group flex items-center px-2 py-2 text-sm font-medium rounded-md"
-        {% endif %}
-          >
-          <!-- Heroicon name: outline/home -->
-        {{ icon | safe }}
+          href="{{ href|e }}"
+        >
+          {{ icon | safe }}
           <span class="flex-1"> {{ title|e }} </span>
         </a>
-        {% endfor %}
+        {% else %}
+        <a
+          href="{{ href|e }}"
+          class="text-indigo-100 hover:bg-indigo-600 hover:bg-opacity-75 group flex items-center px-2 py-2 text-sm font-medium rounded-md"
+        >
+          {{ icon | safe }}
+          <span class="flex-1"> {{ title|e }} </span>
+        </a>
+        {% endif %} {% endfor %}
       </nav>
     </div>
     <div class="flex-shrink-0 flex border-t border-indigo-800 p-4">
@@ -110,10 +99,7 @@
   </nav>
   <section class="flex-grow">
     <header>{% block header %}{% endblock %}</header>
-    {% for message in get_flashed_messages() %}
-    <div class="flash">{{ message }}</div>
-    {% endfor %} {% block content %}{% endblock %}
+    {% block content %}{% endblock %}
   </section>
 </main>
-  </body>
-  </html>
+{% endblock %}

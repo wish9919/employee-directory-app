@@ -1,3 +1,5 @@
 {% extends 'layout.html' %} {% block content %}
 <h1>{% block title %}Dashboard{% endblock %}</h1>
-{% endblock %}
+{% if g.user %}
+<a href="{{ url_for('auth.logout') }}">Logout</a>
+{% endif %} {% endblock %}
