@@ -7,7 +7,7 @@ from werkzeug.exceptions import abort
 from app.auth import login, login_required
 from app.db import get_db
 
-bp = Blueprint("employees", __name__)
+bp = Blueprint("employees", __name__, url_prefix="/employees")
 
 
 @bp.route("/")
