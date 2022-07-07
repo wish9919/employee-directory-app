@@ -1,28 +1,48 @@
 {% extends 'layout.html' %} {% block header %}
-<h1>{% block title %}Employees{% endblock %}</h1>
-{% if g.user %}
-<a class="action" href="{{ url_for('employees.create') }}">New</a>
-{% endif %} {% endblock %} {% block content %} {% for employee in employees %}
-<article class="employee">
-  <header>
-    <div>
-      <h1>
-        {{ employee['first_name'] }} {{ employee['last_name'] }} - {{
-        employee["designation"] }}
-      </h1>
-      <div class="about">
-        Created at {{ employee['created_at'].strftime('%Y-%m-%d') }}
+<div
+  class="pb-5 border-b border-gray-200 sm:flex sm:items-center sm:justify-between"
+>
+  <h3 class="text-xl leading-6 font-bold text-gray-900">Employees</h3>
+  <div class="mt-3 sm:mt-0 sm:ml-4">
+    {% if g.user %}
+    <a
+      class="inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+      href="{{ url_for('employees.create') }}"
+      >New</a
+    >
+    {% endif %}
+  </div>
+</div>
+
+{% endblock %} {% block content %}
+
+<section class="space-y-4">
+  {% for employee in employees %}
+  <article class="py-3">
+    <div class="flex justify-between">
+      <div>
+        <h1 class="text-lg font-semibold">
+          {{ employee['first_name'] }} {{ employee['last_name'] }} - {{
+          employee["designation"] }}
+        </h1>
+        <div class="text-sm text-slate-500">
+          Created at {{ employee['created_at'].strftime('%Y-%m-%d') }}
+        </div>
+      </div>
+
+      <div>
+        <a
+          class="block px-2 py-1 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-slate-600 hover:bg-slate-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-slate-500"
+          href="{{ url_for('employees.update', id=employee['id']) }}"
+          >Edit</a
+        >
       </div>
     </div>
+    {% if employee.note %}
+    <p class="text-slate-800 italic text-xs pt-2">{{ employee['note'] }}</p>
+    {% endif %}
+  </article>
+  {% endfor %}
+</section>
 
-    <a
-      class="action"
-      href="{{ url_for('employees.update', id=employee['id']) }}"
-      >Edit</a
-    >
-  </header>
-  <p class="body">{{ employee['note'] }}</p>
-</article>
-{% if not loop.last %}
-<hr />
-{% endif %} {% endfor %} {% endblock %}
+{% endblock %}
