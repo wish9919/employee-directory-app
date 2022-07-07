@@ -2,13 +2,15 @@
 <div
   class="pb-5 border-b border-gray-200 sm:flex sm:items-center sm:justify-between"
 >
-  <h3 class="text-xl leading-6 font-bold text-gray-900">New Employee</h3>
+  <h3 class="text-xl leading-6 font-bold text-gray-900">
+    {% block title %} New Employee {% endblock %}
+  </h3>
 </div>
 
 {% endblock %} {% block content %}
 <form class="space-y-4 mt-4" method="post">
   <div>
-    <label for="first_name" class="block text-sm  font-semibold text-gray-700"
+    <label for="first_name" class="block text-sm font-semibold text-gray-700"
       >First Name</label
     >
     <div class="mt-1">
@@ -19,7 +21,7 @@
     </div>
   </div>
   <div>
-    <label for="last_name" class="block text-sm  font-semibold text-gray-700"
+    <label for="last_name" class="block text-sm font-semibold text-gray-700"
       >Last Name</label
     >
     <div class="mt-1">
@@ -30,7 +32,7 @@
     </div>
   </div>
   <div>
-    <label for="designation" class="block text-sm  font-semibold text-gray-700"
+    <label for="designation" class="block text-sm font-semibold text-gray-700"
       >Designation</label
     >
     <div class="mt-1">
@@ -42,18 +44,25 @@
   </div>
 
   <div>
-    <label for="note" class="block text-sm  font-semibold text-gray-700"
+    <label for="note" class="block text-sm font-semibold text-gray-700"
       >Note</label
     >
     <div class="mt-1">
-      <textarea  value="{{ request.form["note"] }}" type="text"
-      name="note" id="note" class="shadow-sm focus:ring-indigo-500
-      focus:border-indigo-500 block w-full sm:text-sm border-gray-300
-      rounded-md" placeholder="Additional Notes" ></textarea>
+      <textarea
+        name="note"
+        id="note"
+        class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"
+        placeholder="Additional Notes"
+      >
+{{ request.form["note"] }}</textarea
+      >
     </div>
   </div>
 
-
-  <input class="inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" type="submit" value="Create" />
+  <input
+    class="inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+    type="submit"
+    value="Create"
+  />
 </form>
 {% endblock %}

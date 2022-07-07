@@ -29,7 +29,7 @@ def create():
         first_name = request.form["first_name"]
         last_name = request.form["last_name"]
         designation = request.form["designation"]
-        note = request.form["note"]
+        note = request.form["note"] or None
         error = None
 
         if not first_name:
@@ -76,7 +76,7 @@ def update(id):
         first_name = request.form['first_name']
         last_name = request.form['last_name']
         designation = request.form["designation"]
-        note = request.form["note"]
+        note = request.form["note"] or None
         error = None
 
         if not first_name:

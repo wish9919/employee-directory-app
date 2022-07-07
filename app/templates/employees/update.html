@@ -1,36 +1,87 @@
 {% extends 'layout.html' %} {% block header %}
-<h1>
-  {% block title %}Edit "{{ employee['first_name'] }} {{ employee["last_name"]
-  }}"{% endblock %}
-</h1>
+<div
+  class="pb-5 border-b border-gray-200 sm:flex sm:items-center sm:justify-between"
+>
+  <h3 class="text-xl leading-6 font-bold text-gray-900">
+    {% block title %}Edit "{{ employee['first_name'] }} {{ employee["last_name"]
+    }}"{% endblock %}
+  </h3>
+</div>
+
 {% endblock %} {% block content %}
-<form method="post">
-  <label for="first_name">First Name</label>
+<form class="space-y-4 mt-4 mb-4" method="post">
+  <div>
+    <label for="first_name" class="block text-sm font-semibold text-gray-700"
+      >First Name</label
+    >
+    <div class="mt-1">
+      <input
+        required
+        value="{{ request.form['first_name'] or employee['first_name'] }}"
+        type="text"
+        name="first_name"
+        id="first_name"
+        class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"
+        placeholder="John"
+      />
+    </div>
+  </div>
+
+  <div>
+    <label for="last_name" class="block text-sm font-semibold text-gray-700"
+      >Last Name</label
+    >
+    <div class="mt-1">
+      <input
+        required
+        value="{{ request.form['last_name'] or employee['last_name'] }}"
+        type="text"
+        name="last_name"
+        id="last_name"
+        class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"
+        placeholder="Doe"
+      />
+    </div>
+  </div>
+
+  <div>
+    <label for="designation" class="block text-sm font-semibold text-gray-700"
+      >Designation</label
+    >
+    <div class="mt-1">
+      <input
+        required
+        value="{{ request.form['designation'] or employee['designation'] }}"
+        type="text"
+        name="designation"
+        id="designation"
+        class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"
+        placeholder="Manager"
+      />
+    </div>
+  </div>
+
+  <div>
+    <label for="note" class="block text-sm font-semibold text-gray-700"
+      >Note</label
+    >
+    <div class="mt-1">
+      <textarea
+        name="note"
+        id="note"
+        class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"
+        placeholder="Additional Notes"
+      >
+      {{ request.form['note'] or employee['note'] }}
+      </textarea>
+    </div>
+  </div>
+
   <input
-    name="first_name"
-    id="first_name"
-    value="{{ request.form['first_name'] or employee['first_name'] }}"
-    required
+    class="inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+    type="submit"
+    value="Save"
   />
-  <label for="last_name">Last Name</label>
-  <input
-    name="last_name"
-    id="last_name"
-    value="{{ request.form['last_name'] or employee['last_name'] }}"
-    required
-  />
-  <label for="designation">Designation</label>
-  <input
-    name="designation"
-    id="designation"
-    value="{{ request.form['designation'] or employee['designation'] }}"
-    required
-  />
-  <label for="note">Note</label>
-  <textarea name="note" id="note">
-{{ request.form['note'] or employee['note'] }}</textarea
-  >
-  <input type="submit" value="Save" />
 </form>
 <hr />
 <form
@@ -38,7 +89,7 @@
   method="post"
 >
   <input
-    class="danger"
+    class="inline-flex mt-4 items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500"
     type="submit"
     value="Delete"
     onclick="return confirm('Are you sure?');"
