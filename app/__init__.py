@@ -30,9 +30,10 @@ def create_app(test_config=None):
 
     from . import dashboard
     app.register_blueprint(dashboard.bp)
-    app.add_url_rule("/", endpoint="index")
+    app.add_url_rule('/', endpoint='index')
 
     from . import employees
     app.register_blueprint(employees.bp)
+    app.add_url_rule('/', endpoint='index')
 
     return app

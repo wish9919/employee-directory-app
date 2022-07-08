@@ -20,30 +20,32 @@
 
 <section class="mt-4">
   {% for employee in employees %}
-  <article class="py-5 px-3 cursor-pointer rounded-md hover:bg-slate-50">
-    <div class="flex justify-between">
-      <div>
-        <h1 class="text-lg text-slate-700 font-semibold">
-          {{ employee['first_name'] }} {{ employee['last_name'] }} - {{
-          employee["designation"] }}
-        </h1>
-        <div class="text-sm text-slate-500">
-          Created at {{ employee['created_at'].strftime('%Y-%m-%d') }}
+  <a href="{{ url_for('employees.view', id=employee['id']) }}">
+    <article class="py-5 px-3 cursor-pointer rounded-md hover:bg-slate-50">
+      <div class="flex justify-between">
+        <div>
+          <h1 class="text-lg text-slate-700 font-semibold">
+            {{ employee['first_name'] }} {{ employee['last_name'] }} - {{
+            employee["designation"] }}
+          </h1>
+          <div class="text-sm text-slate-500">
+            Created at {{ employee['created_at'].strftime('%Y-%m-%d') }}
+          </div>
+        </div>
+
+        <div>
+          <a
+            class="block px-2 py-1 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-slate-600 hover:bg-slate-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-slate-500"
+            href="{{ url_for('employees.update', id=employee['id']) }}"
+            >Edit</a
+          >
         </div>
       </div>
-
-      <div>
-        <a
-          class="block px-2 py-1 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-slate-600 hover:bg-slate-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-slate-500"
-          href="{{ url_for('employees.update', id=employee['id']) }}"
-          >Edit</a
-        >
-      </div>
-    </div>
-    {% if employee.note %}
-    <p class="text-slate-800 italic text-xs pt-2">{{ employee['note'] }}</p>
-    {% endif %}
-  </article>
+      {% if employee.note %}
+      <p class="text-slate-800 italic text-xs pt-2">{{ employee['note'] }}</p>
+      {% endif %}
+    </article>
+  </a>
   {% endfor %}
 </section>
 

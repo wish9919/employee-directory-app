@@ -1,3 +1,4 @@
+from crypt import methods
 from flask import (
     Blueprint, flash, g, redirect, render_template, request, url_for
 )
@@ -63,6 +64,14 @@ def get_employee(id):
         abort(404, f"Employee id {id} doesn't exist.")
 
     return employee
+
+
+@bp.route('/<int:id>')
+@login_required
+def view(id):
+    employee = get_employee(id)
+
+    return render_template("employees/view.html", employee=employee)
 
 
 @bp.route('/<int:id>/update', methods=('GET', 'POST'))
