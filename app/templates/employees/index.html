@@ -27,6 +27,7 @@
           <h1 class="text-lg text-slate-700 font-semibold">
             {{ employee['first_name'] }} {{ employee['last_name'] }} - {{
             employee["designation"] }}
+            <span class="text-slate-400">#{{ employee['id'] }}</span>
           </h1>
           <div class="text-sm text-slate-500">
             Created at {{ employee['created_at'].strftime('%Y-%m-%d') }}

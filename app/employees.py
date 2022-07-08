@@ -1,4 +1,3 @@
-from crypt import methods
 from flask import (
     Blueprint, flash, g, redirect, render_template, request, url_for
 )
@@ -66,11 +65,10 @@ def get_employee(id):
     return employee
 
 
-@bp.route('/<int:id>')
+@bp.route('/<int:id>/view')
 @login_required
 def view(id):
     employee = get_employee(id)
-
     return render_template("employees/view.html", employee=employee)
 
 
