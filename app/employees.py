@@ -81,7 +81,7 @@ def update(id):
         first_name = request.form['first_name']
         last_name = request.form['last_name']
         designation = request.form["designation"]
-        note = request.form["note"] or None
+        note = request.form["note"]
         error = None
 
         if not first_name:

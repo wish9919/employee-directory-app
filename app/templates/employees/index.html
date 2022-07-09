@@ -1,23 +1,20 @@
-{% extends 'layout.html' %} {% block header %}
-<div
-  class="pb-5 border-b border-gray-200 sm:flex sm:items-center sm:justify-between"
->
+{% extends 'layout.html' %}
+{% block header %}
+<div class="pb-5 border-b border-gray-200 sm:flex sm:items-center sm:justify-between">
   <h3 class="text-2xl leading-6 font-bold text-gray-900">
     {% block title %}Employees{% endblock %}
   </h3>
   <div class="mt-3 sm:mt-0 sm:ml-4">
     {% if g.user %}
-    <a
-      class="inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-      href="{{ url_for('employees.create') }}"
-      >New</a
-    >
+    <a class="inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+      href="{{ url_for('employees.create') }}">New</a>
     {% endif %}
   </div>
 </div>
+{% endblock %}
 
-{% endblock %} {% block content %}
 
+{% block content %}
 <section class="mt-4">
   {% for employee in employees %}
   <a href="{{ url_for('employees.view', id=employee['id']) }}">
@@ -35,11 +32,8 @@
         </div>
 
         <div>
-          <a
-            class="block px-2 py-1 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-slate-600 hover:bg-slate-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-slate-500"
-            href="{{ url_for('employees.update', id=employee['id']) }}"
-            >Edit</a
-          >
+          <a class="block px-2 py-1 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-slate-600 hover:bg-slate-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-slate-500"
+            href="{{ url_for('employees.update', id=employee['id']) }}">Edit</a>
         </div>
       </div>
       {% if employee.note %}
@@ -49,5 +43,4 @@
   </a>
   {% endfor %}
 </section>
-
 {% endblock %}

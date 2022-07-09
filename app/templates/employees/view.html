@@ -1,25 +1,22 @@
-{% extends 'layout.html' %} {% block header %}
-<div
-  class="pb-5 border-b border-gray-200 sm:flex sm:items-center sm:justify-between"
->
+{% extends 'layout.html' %}
+
+{% block header %}
+<div class="pb-5 border-b border-gray-200 sm:flex sm:items-center sm:justify-between">
   <div>
     <h3 class="text-2xl leading-6 font-bold text-gray-900">
       {% block title %}{{ employee['first_name'] }} {{ employee["last_name"]
       }}{% endblock %}
     </h3>
-    <span class="text-slate-400 text-xs"
-      >Created {{ employee["created_at"].strftime('%Y-%m-%d %H:%M:%S') }}</span
-    >
+    <span class="text-slate-400 text-xs">Created {{ employee["created_at"].strftime('%Y-%m-%d %H:%M:%S') }}</span>
   </div>
   <div>
-    <a
-      class="block px-2 py-1 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-slate-600 hover:bg-slate-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-slate-500"
-      href="{{ url_for('employees.update', id=employee['id']) }}"
-      >Edit</a
-    >
+    <a class="block px-2 py-1 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-slate-600 hover:bg-slate-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-slate-500"
+      href="{{ url_for('employees.update', id=employee['id']) }}">Edit</a>
   </div>
 </div>
-{% endblock %} {% block content %}
+{% endblock %}
+
+{% block content %}
 <section class="mt-4">
   <div class="grid gap-6 grid-cols-2">
     <div>

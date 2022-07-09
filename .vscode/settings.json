@@ -1,4 +1,7 @@
 {
   "css.lint.unknownAtRules": "ignore",
-  "emmet.includeLanguages": { "jinja-html": "html" }
+  "emmet.includeLanguages": { "jinja-html": "html" },
+  "[html]": {
+    "editor.defaultFormatter": "vscode.html-language-features"
+  }
 }
