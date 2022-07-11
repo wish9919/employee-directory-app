@@ -38,5 +38,6 @@ def create_app(test_config=None):
 
     from . import reports
     app.register_blueprint(reports.bp)
+    app.add_url_rule("/", endpoint='index')
 
     return app
